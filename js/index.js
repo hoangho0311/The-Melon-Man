@@ -19,7 +19,7 @@ var game = {
 		jump: new Audio('sounds/jump.wav')
 	},
 	options: {
-		texturesPath: "textures.png",
+		texturesPath: "textures2.png",
 		tileWidth: 24,
 		tileHeight: 24,
 		canvasWidth: window.innerWidth / 3,

@@ -76,7 +76,14 @@ game.redraw = function () {
 	// Draw the player
 	game.drawPlayer()
 
-	game.counter.innerHTML = "A game by Karol Swierczek | Controls: A, D / arrows and SPACE | Points: " + Math.round(-game.player.highestY / (3 * game.options.tileHeight)), game.canvas.width - 50, game.canvas.height - 12
+	let highScore = localStorage.getItem('highScore') || 0;
+
+	if (Math.round(-game.player.highestY / (3 * game.options.tileHeight)) > highScore) {
+		highScore = Math.round(-game.player.highestY / (3 * game.options.tileHeight));
+		localStorage.setItem('highScore', highScore);
+	}
+
+	game.counter.innerHTML = "A game by Karol Swierczek | Controls: A, D / arrows and SPACE | Points: " + Math.round(-game.player.highestY / (3 * game.options.tileHeight))  + " High Score:"+highScore, game.canvas.width - 50, game.canvas.height - 12
 }
 
 game.requestRedraw = function () {
@@ -87,7 +94,7 @@ game.requestRedraw = function () {
 
 	if(game.isOver) {
 		clearInterval(this.player.fallInterval)
-		game.context.font = "30px superscript"
+		game.context.font = "30px Bangers"
 		game.context.textAlign = "center"
 		game.context.fillStyle = "black"
 		game.context.fillText("Game over!", game.canvas.width / 2, game.canvas.height / 2)

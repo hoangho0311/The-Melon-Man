@@ -1,13 +1,4 @@
 
-@font-face {
-    font-family: 'superscript';
-    src:url('../font/superscript.ttf.woff') format('woff'),
-        url('../font/superscript.ttf.svg#superscript') format('svg'),
-        url('../font/superscript.ttf.eot'),
-        url('../font/superscript.ttf.eot?#iefix') format('embedded-opentype');
-    font-weight: normal;
-    font-style: normal;
-}
 
 html,
 body {
@@ -39,11 +30,11 @@ canvas {
 }
 
 .counter {
-  font-family: 'superscript', Arial, sans-serif;
+  font-family: "Bangers", system-ui;
   font-size: 22px;
   color: black;
   position: absolute;
-  bottom: 0;
+  top: 0;
   right: 20px;
   text-align: center;
   z-index: 2;
@@ -62,7 +53,7 @@ canvas {
 }
 
 .mobileControls__button {
-  font-family: 'superscript', Arial, sans-serif;
+  font-family: "Bangers", system-ui;
   width: 60px;
   height: 60px;
   background: #ff4623;
