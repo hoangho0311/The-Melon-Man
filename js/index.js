@@ -19,9 +19,16 @@ var game = {
 		jump: new Audio('sounds/jump.wav')
 	},
 	options: {
-		texturesPath: "textures2.png",
+		texturesPath: "textures.png",
 		tileWidth: 24,
 		tileHeight: 24,
+		canvasWidth: window.innerWidth / 3,
+		canvasHeight: window.innerHeight / 3
+	},
+	character: {
+		texturesPath: "FinnSprite.png",
+		tileWidth: 32,
+		tileHeight: 32,
 		canvasWidth: window.innerWidth / 3,
 		canvasHeight: window.innerHeight / 3
 	},
@@ -33,15 +40,17 @@ var game = {
 
     this.backgrounds['sky'].image.src = "background.png"
 		this.backgrounds['trees'].image.src = "trees.png"
-
+		
 		for (var key in this.backgrounds) {
 			this.backgrounds[key].image.onload = function (currentKey) {
 				this.backgrounds[currentKey].loaded = true
 			}.bind(this, key)
 		}
-
+		
 		this.textures.src = this.options.texturesPath
 		this.textures.onload = onInit
+		this.character.textures = new Image();
+		this.character.textures.src = this.character.texturesPath;
 	},
 	map: {
 		structures: []
