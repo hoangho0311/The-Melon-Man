@@ -1,4 +1,5 @@
-<img src="https://i.ibb.co/F3T1QTH/Screenshot-2019-04-28-at-11-18-55.png" alt="Melon Man" height="400"/>
+![image](https://github.com/user-attachments/assets/b4a3b2e3-a775-4611-bfb2-7985f33c25fe)
+
 
 # The-Melon-Man
 
@@ -8,7 +9,10 @@ Use space to jump, and A, D or arrows to move left / right.
 [> DEMO <](https://karolsw3.github.io/The-Melon-Man/)
 
 # For contributors
-
+1. Change character
+2. Add double Jump
+3. Add fireballs falling
+   
 ## How to add a new platform?
 1. Add a new texture: modify textures.png file, where each texture is 24 pixels high and wide. (You can add new ones wherever you want)
 2. Specify the platform's structure and add it to the generator:
