@@ -21,6 +21,27 @@ game.drawStructure = function (name, x, y) {
 	}
 }
 
+game.drawFireBall = function (tileColumn, tileRow, x, y) {
+    game.context.drawImage(
+        game.fireball.textures,
+        tileColumn * game.fireball.tileWidth,
+        tileRow * game.fireball.tileHeight,
+        game.fireball.tileWidth,
+        game.fireball.tileHeight,
+        x * game.fireball.tileWidth - Math.round(game.player.x) + Math.round(game.fireball.canvasWidth / 2 + game.fireball.tileWidth / 2),
+        y * game.fireball.tileHeight - Math.round(game.player.y) + Math.round(game.fireball.canvasHeight / 2 + game.fireball.tileHeight / 2),
+        game.fireball.tileWidth,
+        game.fireball.tileHeight
+    );
+};
+
+game.drawFireBalls = function () {
+    for (var i = 0; i < game.map.fireballsList.length; i++) {
+        var fireball = game.map.fireballsList[i]
+        game.drawFireBall(fireball.tileColumn, fireball.tileRow, fireball.x, fireball.y)
+    }
+};
+
 game.drawPlayer = function () {
 	actualPlayerTile = game.player.animations[game.player.direction][game.player.animationFrameNumber % 4]
 	game.context.save();
@@ -77,6 +98,8 @@ game.redraw = function () {
 		game.drawStructure(structuresToDraw[i].name, structuresToDraw[i].x, structuresToDraw[i].y)
 	}
 
+	game.drawFireBalls()
+	
 	// Draw the player
 	game.drawPlayer()
 
@@ -106,3 +129,45 @@ game.requestRedraw = function () {
 		game.context.fillText("(Refresh the page to restart)", game.canvas.width / 2, game.canvas.height / 2 + 50)
 	}
 }
+
+game.updateFireballs = function () {
+    for (let i = 0; i < game.map.fireballsList.length; i++) {
+        let fireball = game.map.fireballsList[i]
+        fireball.y += fireball.speed
+		
+		if (
+            game.player.x / game.character.tileWidth / 2 >= fireball.x
+            && game.player.x / game.character.tileWidth / 2 <= fireball.x + 0.7
+			&& game.player.y / game.character.tileHeight / 2 >= fireball.y - 0.5
+            && game.player.y / game.character.tileHeight / 2 <= fireball.y + 0.5
+        ) {
+			console.log("dung")
+            clearInterval(game.player.fallInterval)
+            game.isOver = true
+            game.map.fireballsList.splice(i, 1)
+            i--
+            continue
+        }
+		
+        if (fireball.y > 10) {
+            game.map.fireballsList.splice(i, 1); 
+            i--;
+        }
+    }
+}
+
+game.spawnFireball = function () {
+    let fireball = {
+        x: Math.floor(Math.random() * 4),
+		y: game.player.y / game.character.tileHeight - 3,
+        speed: 0.2,
+        tileColumn: 0,
+        tileRow: 0
+    };
+    game.map.fireballsList.push(fireball);
+	console.log(fireball.y)
+}
+
+setInterval(game.spawnFireball, 2000)
+
+setInterval(game.updateFireballs, 100)

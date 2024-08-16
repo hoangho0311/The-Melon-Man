@@ -32,6 +32,13 @@ var game = {
 		canvasWidth: window.innerWidth / 3,
 		canvasHeight: window.innerHeight / 3
 	},
+	fireball: {
+		texturesPath: "FireBall.png",
+		tileWidth: 64,
+		tileHeight: 64,
+		canvasWidth: window.innerWidth / 3.5,
+		canvasHeight: window.innerHeight / 3.5
+	},
 	pressedKeys: {},
 	init: function (onInit) {
 		this.canvas.width = this.options.canvasWidth
@@ -51,9 +58,12 @@ var game = {
 		this.textures.onload = onInit
 		this.character.textures = new Image();
 		this.character.textures.src = this.character.texturesPath;
+		this.fireball.textures = new Image();
+		this.fireball.textures.src = this.fireball.texturesPath;
 	},
 	map: {
-		structures: []
+		structures: [],
+		fireballsList: [],
 	},
 	isOver: false
 }

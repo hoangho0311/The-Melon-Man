@@ -96,3 +96,9 @@ game.generateMap = function () {
 		})
 	}
 }
+
+game.fireBalls={
+	"fireBall": [
+        {tileColumn: 3, tileRow: 0, x: 0, y: 0}, 
+	]
+}
